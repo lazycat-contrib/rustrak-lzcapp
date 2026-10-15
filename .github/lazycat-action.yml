@@ -1,0 +1,67 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: dist/rustrak.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: rustrak
+
+build:
+  run_buildscript: false
+
+images:
+  - id: rustrak
+    target: service
+    service: rustrak
+    source: docker.io/rustrak/rustrak-server
+    channel: stable
+    sort: semver
+    tag_regex: '^v?\d+\.\d+\.\d+$'
+    delivery:
+      mode: mirror
+      require_digest_match: true
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    changelog_locales: [zh, en]
+    application:
+      language: zh
+      name: Rustrak
+      brief: "超轻量自托管错误追踪，兼容 Sentry SDK"
+      description: |-
+        Rustrak 是超轻量的自托管错误追踪服务，兼容 Sentry SDK 协议。
+
+        - 一个容器同时提供 API 与 Web 仪表盘（SQLite，无需外部数据库）
+        - 两阶段摄入：事件先落盘再入库，流量高峰不超时
+        - 发布健康度、会话追踪与 AI Agent 追踪
+        - 支持 OIDC 单点登录（已集成懒猫账号）
+        - 20k 事件突发约 5k/s 摄入，峰值内存 < 60MB
+
+        在你的应用里把 Sentry SDK 的 DSN 指向本应用即可开始收集错误。
+      keywords: "error tracking,sentry,monitoring,developer tools"
+      source: https://github.com/rustrak/rustrak
+      source_author: rustrak
+      support_pc: true
+      support_mobile: false
+      screenshot_pc_files:
+        - .github/screenshots/pc-1.png
+        - .github/screenshots/pc-3.png
+        - .github/screenshots/pc-4.png
+        - .github/screenshots/pc-5.png
+        - .github/screenshots/pc-6.png
+        - .github/screenshots/pc-7.png
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Rustrak
+    summary: "超轻量自托管错误追踪（Sentry SDK 兼容）"
