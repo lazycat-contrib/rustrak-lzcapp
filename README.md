@@ -5,7 +5,7 @@
 ## 模式
 
 - **双商店发布**：官方商店（含截图）+ 喵喵商店。
-- **镜像模式（mirror）**：`docker.io/rustrak/rustrak-server` 镜像经 `docker.1ms.run` 加速器拉取，`require_digest_match: true` 校验镜像内容与上游一致。
+- **lazycat 交付**（双商店要求）：CI 将 `docker.io/rustrak/rustrak-server` 镜像拷贝到 `registry.lazycat.cloud` 并回写 manifest。
 - **自动跟随上游**：每日检查上游 semver tag，发现新版本自动更新版本号与镜像、构建 LPK、发布商店。
 - **懒猫 OIDC 单点登录**：`application.oidc_redirect_path: /auth/sso/callback` + `LAZYCAT_AUTH_OIDC_*` 注入变量，登录页直接用懒猫账号。
 - **不支持移动端**（`unsupported_platforms: ios/android/tvos`）。

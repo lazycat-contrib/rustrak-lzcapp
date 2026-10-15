@@ -26,13 +26,13 @@ images:
     sort: semver
     tag_regex: '^v?\d+\.\d+\.\d+$'
     delivery:
-      mode: mirror
-      require_digest_match: true
+      mode: lazycat
 
 stores:
   official:
     enabled: true
     skip_if_version_exists: true
+    create_if_missing: true
     changelog_locales: [zh, en]
     application:
       language: zh
