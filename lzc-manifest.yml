@@ -10,9 +10,9 @@ application:
       backend: http://rustrak:8080/
 services:
   rustrak:
-  user: root
     # upstream: docker.io/rustrak/rustrak-server:v0.16.4
     image: registry.lazycat.cloud/czyt/rustrak/rustrak-server:a49a4f7b90cc098f
+    user: root
     environment:
       - SESSION_SECRET_KEY={{ stable_secret "session_secret" }}
       # 外部访问地址（DSN 生成与 Cookie 依赖）
