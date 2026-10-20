@@ -10,8 +10,8 @@ application:
       backend: http://rustrak:8080/
 services:
   rustrak:
-    # upstream: docker.io/rustrak/rustrak-server:v0.18.1
-    image: registry.lazycat.cloud/czyt/rustrak/rustrak-server:70bc66dffce535b6
+    # upstream: docker.io/rustrak/rustrak-server:v0.19.0
+    image: registry.lazycat.cloud/czyt/rustrak/rustrak-server:1d389a5d306d657c
     user: root
     environment:
       - SESSION_SECRET_KEY={{ stable_secret "session_secret" }}
