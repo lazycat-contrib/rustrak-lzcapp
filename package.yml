@@ -1,5 +1,5 @@
 package: community.lazycat.app.rustrak
-version: 0.19.1
+version: 0.20.0
 name: Rustrak
 description: "Ultra-lightweight error tracking server compatible with Sentry SDKs"
 min_os_version: 1.5.0
